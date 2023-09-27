@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://clblprkm8hwkb"]
+
+[ext_resource type="Texture2D" uid="uid://nu80ll7tgp1k" path="res://SFX/Particles/Sprites/pixel_smoke.png" id="1_an0su"]
+
+[sub_resource type="Gradient" id="Gradient_8rln2"]
+offsets = PackedFloat32Array(0.00240385, 1)
+colors = PackedColorArray(0.737193, 0.737193, 0.737193, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qtaax"]
+gradient = SubResource("Gradient_8rln2")
+
+[sub_resource type="Curve" id="Curve_w4ups"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sb0el"]
+curve = SubResource("Curve_w4ups")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ttfg"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 75.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 25.0
+damping_max = 25.0
+scale_curve = SubResource("CurveTexture_sb0el")
+color_ramp = SubResource("GradientTexture1D_qtaax")
+turbulence_enabled = true
+
+[node name="smoke" type="GPUParticles2D"]
+texture_filter = 1
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_8ttfg")
+texture = ExtResource("1_an0su")
+explosiveness = 1.0

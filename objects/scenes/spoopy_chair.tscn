@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://in0cpf7lt4ta"]
+
+[ext_resource type="Texture2D" uid="uid://dlvevoti0clug" path="res://objects/images/broken chair.png" id="1_gwfks"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14oce"]
+size = Vector2(114, 182)
+
+[node name="spoopy_chair" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_gwfks")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_14oce")
+debug_color = Color(0, 0.6, 0.701961, 0.14902)

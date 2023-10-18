@@ -1,32 +1,103 @@
-[gd_scene load_steps=6 format=3 uid="uid://hfbf4pj0nr8v"]
+[gd_scene load_steps=13 format=3 uid="uid://hfbf4pj0nr8v"]
 
-[sub_resource type="Gradient" id="Gradient_lyjds"]
-colors = PackedColorArray(1, 0.65625, 0, 1, 1, 0, 0, 1)
+[ext_resource type="Texture2D" uid="uid://bfu33bt6c2hi6" path="res://Textures/smoke_explosion_texture.png" id="1_ofu2x"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_72r0u"]
-gradient = SubResource("Gradient_lyjds")
+[sub_resource type="GDScript" id="GDScript_ctv3y"]
+script/source = "extends Node2D
 
-[sub_resource type="Curve" id="Curve_3fxqb"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+func _input(event):
+	if event.is_action_pressed(\"ui_accept\"):
+		for child in get_children():
+			if child is GPUParticles2D:
+				child.restart()
+
+"
+
+[sub_resource type="Gradient" id="Gradient_battb"]
+offsets = PackedFloat32Array(0, 0.324519, 0.846154, 1)
+colors = PackedColorArray(1, 0.557904, 0.104728, 1, 1, 0, 0, 1, 0.652227, 2.76752e-06, 4.33177e-07, 1, 1, 1, 1, 0.615686)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6qy3m"]
+gradient = SubResource("Gradient_battb")
+
+[sub_resource type="Curve" id="Curve_e0dgf"]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_umpom"]
+curve = SubResource("Curve_e0dgf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yl436"]
+lifetime_randomness = 0.25
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_umpom")
+color_ramp = SubResource("GradientTexture1D_6qy3m")
+
+[sub_resource type="Gradient" id="Gradient_4qddr"]
+offsets = PackedFloat32Array(0, 0.483173)
+colors = PackedColorArray(0.266575, 0.266575, 0.266575, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x7chi"]
+gradient = SubResource("Gradient_4qddr")
+
+[sub_resource type="Curve" id="Curve_b2e7n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.993289, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_vmm6b"]
-curve = SubResource("Curve_3fxqb")
+[sub_resource type="CurveTexture" id="CurveTexture_6jplg"]
+curve = SubResource("Curve_b2e7n")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lisv8"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_weagr"]
+lifetime_randomness = 0.25
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
 particle_flag_disable_z = true
 spread = 180.0
 gravity = Vector3(0, 98, 0)
-initial_velocity_min = 30.0
-initial_velocity_max = 75.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_min = 1.0
+angular_velocity_max = 1.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-damping_min = 15.0
-damping_max = 15.0
-scale_curve = SubResource("CurveTexture_vmm6b")
-color_ramp = SubResource("GradientTexture1D_72r0u")
+scale_min = 3.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_6jplg")
+color_ramp = SubResource("GradientTexture1D_x7chi")
 
-[node name="explosion" type="GPUParticles2D"]
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_lisv8")
+[node name="explosion_core" type="Node2D"]
+position = Vector2(636, 266)
+script = SubResource("GDScript_ctv3y")
+
+[node name="explosion" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_yl436")
+one_shot = true
 explosiveness = 1.0
+fixed_fps = 60
+metadata/_edit_lock_ = true
+
+[node name="explosion_smoke" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_weagr")
+texture = ExtResource("1_ofu2x")
+lifetime = 3.0
+one_shot = true
+metadata/_edit_lock_ = true

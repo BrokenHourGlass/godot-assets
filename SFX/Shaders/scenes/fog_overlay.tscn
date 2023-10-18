@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfyetu78igxcq"]
 
 [ext_resource type="Shader" path="res://SFX/Shaders/fog.gdshader" id="1_p3k7k"]
-[ext_resource type="Texture2D" uid="uid://ducb35mi0mcbr" path="res://Miscellaneous/Textures/seamless_fog.png" id="2_80ec3"]
+[ext_resource type="Texture2D" uid="uid://ducb35mi0mcbr" path="res://Textures/Fog/seamless_fog.png" id="2_80ec3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7w8f8"]
 shader = ExtResource("1_p3k7k")

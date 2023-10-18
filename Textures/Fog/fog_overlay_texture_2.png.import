@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://uhry3knfahbp"
-path="res://.godot/imported/fog_overlay_texture_2.png-fdb243c9a2e513f4775d7e77c95f51d8.ctex"
+path="res://.godot/imported/fog_overlay_texture_2.png-802705550cf38660d53a26d8fcd8726d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Miscellaneous/Textures/fog_overlay_texture_2.png"
-dest_files=["res://.godot/imported/fog_overlay_texture_2.png-fdb243c9a2e513f4775d7e77c95f51d8.ctex"]
+source_file="res://Textures/Fog/fog_overlay_texture_2.png"
+dest_files=["res://.godot/imported/fog_overlay_texture_2.png-802705550cf38660d53a26d8fcd8726d.ctex"]
 
 [params]
 
